@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <time.h>
 #define PI 3.14159265358979323846
@@ -27,6 +28,7 @@ float sin_get() {
 
 int main()
 {
+	int i;
 	sin_init(10, 1000, 0);
 
 
@@ -36,13 +38,10 @@ int main()
 
 	std::ofstream ofs( "output.txt" );
 
-	while(((int)(end-start)/CLOCKS_PER_SEC)<1){
-		//printf("%f %f\n", sin_get(),(float)(end-start)/CLOCKS_PER_SEC);
-		ofs <<sin_get()<< std::endl;
+	for(i=0;i<=999;++i){
+		ofs <<5*sin_get()+(double) rand() / RAND_MAX<< std::endl;
 		end = clock();
-
 	}
 	
-
 	return 0;
 }

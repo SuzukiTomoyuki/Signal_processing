@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <boost/array.hpp>
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
@@ -27,8 +28,11 @@ float sin_get() {
 
 int main()
 {
-	sin_init(10, 1000, 0);
+	int i;
+	double x=127/5;
+	boost::array<double, 1000> ar;
 
+	sin_init(10, 1000, 0);
 
 	clock_t start,end;
 	start = clock();
@@ -36,13 +40,11 @@ int main()
 
 	std::ofstream ofs( "output.txt" );
 
-	while(((int)(end-start)/CLOCKS_PER_SEC)<1){
-		//printf("%f %f\n", sin_get(),(float)(end-start)/CLOCKS_PER_SEC);
-		ofs <<sin_get()<< std::endl;
+	for(i=0;i<=999;++i){
+		ar[i]=5*sin_get();
+		ofs <<ar[i]<<'\t'<<(int)(ar[i]*x)<< std::endl;
 		end = clock();
-
 	}
-	
 
 	return 0;
 }
